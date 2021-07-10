@@ -1,0 +1,9 @@
+footer p{
+    color: black;
+    font-family: 'Ubuntu', sans-serif;
+}
+footer{
+    display: flex;
+    justify-content: center;
+    align-self: flex-end;
+}
