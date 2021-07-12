@@ -1,3 +1,14 @@
+<?php
+    session_start();
+    if(isset($_SESSION['username'])){
+        // user is ingelogged
+        echo "welcome " . $_SESSION['username'];
+    }
+    else {
+        // user is niet ingelogged
+       header("location: login.php");
+    }
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +17,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengram</title>
 
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="css/instacss.css">
 
     <link rel="icon" href="images/favicon_planda/favicon.ico">
 
@@ -20,7 +30,7 @@
 <body>
     <?php include_once("navigation.php")?>
     
-   <h1>Not Done</h1>
+   <h2>Not Done</h2>
 
    
    <h2>Done</h2>

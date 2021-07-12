@@ -13,7 +13,12 @@ header{
 #logo{
     width: 20em;
 }
+nav{
+    width: 100%;
+   display: table;
+   text-align: center;
 
+}
 nav a{
     font-family: 'Ubuntu', sans-serif;
     color: black;
@@ -21,6 +26,9 @@ nav a{
     transition: 0.2s;
     padding-bottom: 0.2em;
     margin-left: 1em;
+    display: inline-block;
+    float: none;
+    
 }
 
 nav a:hover{
