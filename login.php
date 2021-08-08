@@ -1,20 +1,29 @@
 <?php
-function canLogin($username, $password)
+
+function canLogin($email, $password)
 {
-    if($username === "ameliegosiau" && $password === "Test1") {
-        return true;
-    }
-    else {
+    $conn = new PDO('mysql:host=localhost;dbname=planda', "root", "root");
+    $statement = $conn->prepare("select * from user where email = :email");
+    $statement->bindValue(":email", $email);
+    $statement->execute();
+    $user = $statement->fetch();
+    if(!$user){
         return false;
+    }
+    $hash = $user["password"];
+    if( password_verify($password, $hash)){
+        return true;
+    } else{
+         return false;
     }
 }
    if(!empty($_POST)){
-       $username = $_POST['username']; 
+       $email = $_POST['email']; 
        $password = $_POST['password'];
 
-       if(canLogin($username, $password)){
+       if(canLogin($email, $password)){
         session_start();
-        $_SESSION["username"] =$username;
+        $_SESSION["email"] =$email;
         header("Location: index.php");
 
        }
@@ -52,15 +61,15 @@ function canLogin($username, $password)
     <div class="alert">That password was incorrect. Please try again</div>
   
   <div class="form form--login">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username">
+    <label for="email">email</label>
+    <input type="text" id="email" name="email">
   
-    <label for="password">Password</label>
+    <label for="password">password</label>
     <input type="password" id="password" name="password">
   </div>
   
   
-<input type="post" value="log in" class="btn">
+<input type="submit" value="log in" class="btn">
 </div>
 
 </body>

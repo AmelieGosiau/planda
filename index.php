@@ -1,8 +1,8 @@
 <?php
     session_start();
-    if(isset($_SESSION['username'])){
+    if(isset($_SESSION['email'])){
         // user is ingelogged
-        echo "welcome " . $_SESSION['username'];
+        echo "welcome " . $_SESSION['email'];
     }
     else {
         // user is niet ingelogged

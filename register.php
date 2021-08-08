@@ -7,13 +7,28 @@
         
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT, $options);
        
-        $conn = new mysqli("localhost", "root", "root", "planda");
-        $result = $conn->query("insert into user (email ,password) values ('".$conn->real_escape_string($email)."','".$conn->real_escape_string($password)."')");
-        var_dump($result);
-        //
+        $conn = new PDO('mysql:host=localhost; dbname=planda', "root", "root");
+        $query = $conn->prepare("insert into user (email ,password) values (:email, :password)");
+        $query->bindValue(":email", $email);
+        $query->bindValue(":password", $password);
+        $query->execute();
+/*
+        if(canLogin($email, $password)){
+            session_start();
+            $_SESSION["email"] =$email;
+            header("Location: index.php");
+    
+           }
+           else {
+               $error = true;
+           }
+*/
+}
 
+    
+ 
+       
 
-    }
 ?>
 
 <!DOCTYPE html>
