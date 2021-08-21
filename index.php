@@ -1,8 +1,10 @@
 <?php
+
+
     session_start();
     if(isset($_SESSION['email'])){
         // user is ingelogged
-        echo "welcome " . $_SESSION['email'];
+        echo "welcome " . $_SESSION['username'];
     }
     else {
         // user is niet ingelogged
@@ -29,11 +31,14 @@
 </head>
 <body>
     <?php include_once("navigation.php")?>
-    
-   <h2>Not Done</h2>
-
+    <div id="notdone">
+   <h3>Not Done</h3>
+    </div>
    
-   <h2>Done</h2>
+    <div id="done">
+    <h3>Done</h3>
+    </div>
+  
    
               
 

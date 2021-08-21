@@ -1,5 +1,12 @@
 <?php
 
+include_once('core/autoload.php');
+session_start();
+
+if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
+  header("Location: index.php");   
+}
+
 function canLogin($email, $password)
 {
     $conn = new PDO('mysql:host=localhost;dbname=planda', "root", "root");
@@ -48,11 +55,11 @@ function canLogin($email, $password)
 </head>
 <body>
 
-
 <div id="app">
 <form action="" method="post">
     <h1>Log in to Planda</h1>
     <nav class="nav--login">
+    <img class="logo" src="images/logo/planda.png" alt="Planda logo" >
         <a href="#" id="tabLogin">Log in</a>
         <a href="register.php" id="tabSignIn">Sign up</a>
     </nav>

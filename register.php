@@ -1,5 +1,6 @@
 <?php
     if(!empty($_POST)){
+        $username = $_POST['username'];
         $email = $_POST['email'];
         $options = [
             'cost' => 12, //niet te hoog anders duurt het te lang op te laden
@@ -8,7 +9,8 @@
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT, $options);
        
         $conn = new PDO('mysql:host=localhost; dbname=planda', "root", "root");
-        $query = $conn->prepare("insert into user (email ,password) values (:email, :password)");
+        $query = $conn->prepare("insert into user (username, email ,password) values (:username, :email, :password)");
+        $query->bindValue(":username", $username);
         $query->bindValue(":email", $email);
         $query->bindValue(":password", $password);
         $query->execute();
@@ -24,11 +26,6 @@
            }
 */
 }
-
-    
- 
-       
-
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +45,7 @@
 
 <div id="app">
 <form action="" method="post">
+<img class="logo" src="images/logo/planda.png" alt="Planda logo" >
     <h1>Sign up to Planda</h1>
     <nav class="nav--login">
         <a href="login.php" id="tabLogin">Log in</a>
@@ -60,6 +58,9 @@
  
   
   <div class="form form--login">
+
+  <label for="username">username</label>
+    <input type="text" id="username" name="username">
 
   <label for="email">email</label>
     <input type="text" id="email" name="email">
