@@ -1,6 +1,6 @@
 <?php
 $conn = new mysqli("localhost", "root", "root", "planda");
-$users = $conn->query("select * from user");
+$user = $conn->query("select * from user");
 
 ?>
 <html lang="en">
@@ -11,7 +11,7 @@ $users = $conn->query("select * from user");
     <title>Document</title>
 </head>
 <body>
-    <?php foreach( $users as $user): ?>
+    <?php foreach( $user as $user): ?>
     <h1><?php echo $user['email'];  ?></h1> 
 <?php endforeach; ?>
 

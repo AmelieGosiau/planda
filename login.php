@@ -1,43 +1,30 @@
 <?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
 include_once('core/autoload.php');
 session_start();
 
-if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"]) {
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]) {
   header("Location: index.php");   
 }
 
-function canLogin($email, $password)
-{
-    $conn = new PDO('mysql:host=localhost;dbname=planda', "root", "root");
-    $statement = $conn->prepare("select * from user where email = :email");
-    $statement->bindValue(":email", $email);
-    $statement->execute();
-    $user = $statement->fetch();
-    if(!$user){
-        return false;
-    }
-    $hash = $user["password"];
-    if( password_verify($password, $hash)){
-        return true;
-    } else{
-         return false;
-    }
-}
-   if(!empty($_POST)){
-       $email = $_POST['email']; 
-       $password = $_POST['password'];
+if(isset($_POST["login"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-       if(canLogin($email, $password)){
-        session_start();
-        $_SESSION["email"] =$email;
+    if(User::canLogin($username, $password)) {
+        $_SESSION['username'] = $username;
+        $_SESSION['loggedin'] = true;
+        $_SESSION["userid"] = User::getUserIdByName($username);
+
         header("Location: index.php");
+    } else {
+        $error = "Username or password are incorrect.";
+    }
 
-       }
-       else {
-           $error = true;
-       }
-   }
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +35,7 @@ function canLogin($email, $password)
     <link rel="stylesheet" type="text/css" href="css/registrationLogin.css"/>
     <link rel="icon" href="images/favicon_planda/favicon.ico">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500&display=swap');
     </style> 
 
     <title>Log in</title>
@@ -64,19 +51,23 @@ function canLogin($email, $password)
         <a href="register.php" id="tabSignIn">Sign up</a>
     </nav>
   
-  <?php if(isset($error)); ?>
-    <div class="alert">That password was incorrect. Please try again</div>
+    <?php if(isset($error)):?>
+        <div class="alert">
+        <?php echo $error;?></div>
+    <?php endif;?>
   
   <div class="form form--login">
-    <label for="email">email</label>
-    <input type="text" id="email" name="email">
   
-    <label for="password">password</label>
-    <input type="password" id="password" name="password">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+   
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+    
   </div>
   
   
-<input type="submit" value="log in" class="btn">
+<input type="submit" name="login" id="submitBtn" class="btn" value="login">
 </div>
 
 </body>

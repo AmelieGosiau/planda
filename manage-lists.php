@@ -1,11 +1,4 @@
-<?php include_once('core/autoload.php');
- include_once('classes/Task.php');
-
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-
-?>
+<?php include_once('core/autoload.php');?>
 <?php include_once('loggedin.inc.php');?>
 
 <!DOCTYPE html>
@@ -29,23 +22,20 @@ error_reporting(E_ALL);
 <body>
     <?php include_once("navigation.php")?>
 
-    <div class="all-tasks">
-<a href="#">Add Task</a>
+<h3>manage lists</h3>
+<div class="all-lists">
 
+<a href="add-list.php">Add list</a>
     <table >
     <tr>
     <th>S.N.</th>
-    <th>Task Name</th>
-    <th>priority</th>
-    <th>Deadline</th>
-    <th>actions</th>
+    <th>List Name</th>
+    <th>Actions</th>
     </tr>
 
     <tr>
         <td>1. </td>
-        <td>Design a website</td>
-        <td>Medium</td>
-        <td>23/05/2020</td>
+        <td>To DO</td>
         <td>
             <a href="#">Update</a>
 

@@ -36,12 +36,13 @@ h1
 }
 .alert
 {
+  color: #bd1c22;
   background-color: #fff;
   border: 1px solid #bd1c22;
   border-radius: 5px;
-  border-left-width: 5px;
   padding: 1em;
 }
+
 
 .nav--login
 {

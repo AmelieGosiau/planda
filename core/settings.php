@@ -1,10 +1,10 @@
 <?php
-    const SETTINGS = [
+    $SETTINGS = [
         "db" => [
             "user" => "root",
             "password" => "root",
             "host" => "localhost",
             "dbName" => "planda"
         ]
-    ];
+        ];
 ?>

@@ -1,31 +1,26 @@
+<?php include_once('core/autoload.php'); ?>
+
 <?php
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
     if(!empty($_POST)){
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $options = [
-            'cost' => 12, //niet te hoog anders duurt het te lang op te laden
-        ];
-        
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT, $options);
-       
-        $conn = new PDO('mysql:host=localhost; dbname=planda', "root", "root");
-        $query = $conn->prepare("insert into user (username, email ,password) values (:username, :email, :password)");
-        $query->bindValue(":username", $username);
-        $query->bindValue(":email", $email);
-        $query->bindValue(":password", $password);
-        $query->execute();
-/*
-        if(canLogin($email, $password)){
+        try {
+            $user = new User();
+
+            $user->setUsername($_POST["username"]);
+            $user->setPassword($_POST["password"]);
+            $user->setEmail($_POST["email"]);
+
+            $user->save();
+            
             session_start();
-            $_SESSION["email"] =$email;
-            header("Location: index.php");
-    
-           }
-           else {
-               $error = true;
-           }
-*/
-}
+            header('location: login.php');
+        } catch (\Throwable $e) {
+            $error = $e->getMessage();
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="css/registrationLogin.css"/>
     <link rel="icon" href="images/favicon_planda/favicon.ico">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500&display=swap');
     </style> 
 
     <title>Sign up</title>
@@ -44,7 +39,7 @@
 <body>
 
 <div id="app">
-<form action="" method="post">
+<form method="post">
 <img class="logo" src="images/logo/planda.png" alt="Planda logo" >
     <h1>Sign up to Planda</h1>
     <nav class="nav--login">
@@ -53,7 +48,10 @@
     </nav>
   
 
-    <div class="alert hidden">That password was incorrect. Please try again</div>
+    <?php if(isset($error)):?>
+        <div class="alert">
+        <?php echo $error;?></div>
+    <?php endif;?>
   
  
   
@@ -70,7 +68,7 @@
     
   </div>
   
-<input type="submit" value="sign up " class="btn">
+<input type="submit" value="Sign up " class="btn">
 </div>
 
 </body>
