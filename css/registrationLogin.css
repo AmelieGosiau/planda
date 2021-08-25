@@ -34,14 +34,7 @@ h1
  margin-right: auto;
 
 }
-.alert
-{
-  color: #bd1c22;
-  background-color: #fff;
-  border: 1px solid #bd1c22;
-  border-radius: 5px;
-  padding: 1em;
-}
+
 
 
 .nav--login

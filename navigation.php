@@ -5,7 +5,7 @@
     <a href="#">Doing</a>
     <a href="#">Done</a>
 
-    <a href="manage-lists.php" style="color: blue;">Manage Lists</a>
+    <a href="manage-lists.php" class="managelists">Manage Lists</a>
     <div class="right-nav" style="float: right;">
     <a href="index.php">Home</a>
     <a href="logout.php">Log out?</a>

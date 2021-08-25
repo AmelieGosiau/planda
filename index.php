@@ -14,7 +14,7 @@ error_reporting(E_ALL);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengram</title>
+    <title>planda</title>
 
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
@@ -30,8 +30,12 @@ error_reporting(E_ALL);
     <?php include_once("navigation.php")?>
 
     <div class="all-tasks">
-<a href="#">Add Task</a>
-
+<a href="add-list.php">Add Task</a>
+<?php if(isset($listOK)): ?>
+        <section class="addsucces">
+            <p>You added a new list</p>
+        </section>
+    <?php endif; ?>
     <table >
     <tr>
     <th>S.N.</th>

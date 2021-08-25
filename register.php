@@ -31,7 +31,7 @@ error_reporting(E_ALL);
     <link rel="stylesheet" type="text/css" href="css/registrationLogin.css"/>
     <link rel="icon" href="images/favicon_planda/favicon.ico">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@500;700&display=swap');
     </style> 
 
     <title>Sign up</title>

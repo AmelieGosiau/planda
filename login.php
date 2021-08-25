@@ -21,7 +21,7 @@ if(isset($_POST["login"])) {
 
         header("Location: index.php");
     } else {
-        $error = "Username or password are incorrect.";
+        $alert = "Username or password are incorrect.";
     }
 
 }

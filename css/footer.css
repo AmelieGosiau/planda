@@ -1,10 +1,7 @@
 footer p{
-    color: black;
-    font-family: 'Montserrat', sans-serif;
-}
-footer{
-    display: flex;
-    justify-content: center;
-    align-self: flex-end;
-    
+    position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   text-align: center;
 }

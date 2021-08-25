@@ -3,6 +3,29 @@ html, body, h3 {
     
 }
 
+table{
+    position: fixed;
+  font-size: 12px;
+    width: 100%;
+    top: 20%;
+    left: 0%;
+    right: 10%;
+    text-align: left;
+
+}
+
+.managelists{
+    color: white; 
+    background-color: black;
+    float: left;
+}
+
+.managelists:hover{
+    color: black;
+    background-color: white; 
+    border-top: 1px solid black;
+}
+
 h3{
     width: 100%;
     text-align: center;
@@ -12,9 +35,28 @@ h3{
 color: rgb(172, 51, 51);
 }
 
+.alert
+{
+  color: #bd1c22;
+  background-color: #fff;
+  border: 1px solid #bd1c22;
+  border-radius: 5px;
+  padding: 1em;
+}
+
 
 
 .done h3{
     color: rgb(45, 145, 53);
 }
 
+.addsucces {
+    color: white;
+    display: block;
+    margin: 0 auto 1em auto;
+    padding: 0.1em;
+    background-color: green;
+    border-radius: 10px;
+    width: 30em;
+    text-align: center;
+  }
