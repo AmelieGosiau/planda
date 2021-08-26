@@ -74,4 +74,3 @@ $userId = User::getUserIdByName($_SESSION['username']);
     <?php include_once("footer.php")?>
 </body>
 </html>
-

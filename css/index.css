@@ -4,11 +4,10 @@ html, body, h3 {
 }
 
 table{
-    position: fixed;
+   
   font-size: 12px;
     width: 100%;
-    top: 20%;
-    left: 0%;
+    top: 30px;
     right: 10%;
     text-align: left;
 

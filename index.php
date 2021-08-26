@@ -38,7 +38,7 @@ error_reporting(E_ALL);
     <?php endif; ?>
     <table >
     <tr>
-    <th>S.N.</th>
+    <th>Task number</th>
     <th>Task Name</th>
     <th>priority</th>
     <th>Deadline</th>
