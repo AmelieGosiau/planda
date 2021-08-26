@@ -31,12 +31,12 @@
         }
 
         public static function getlistnameById($listId){
-            $conn = Database::getConnection(); 
+            $conn = db::getConnection(); 
             $query = $conn->prepare("SELECT list_name FROM tbl_lists WHERE list_id = :list_id");
             $query->bindValue(":list_id", $listId);
             $query->execute();
             $listname = $query->fetch();
-            return $listname["list_name"];
+            return $listname;
         }
 
        
@@ -52,16 +52,19 @@
         }
 
         public static function getdescriptionById($listId){
-            $conn = Database::getConnection(); 
+            $conn = db::getConnection(); 
             $query = $conn->prepare("SELECT list_description FROM tbl_lists WHERE list_id = :list_id");  
             $query->bindValue(":list_id", $listId);
             $query->execute();
             $listdescription = $query->fetch();
-            return $listdescription["list_description"];
+            return $listdescription;
+
+            
+        
         }
 
         public function update(){
-            $conn = Database::getConnection();
+            $conn = db::getConnection();
             $query = $conn->prepare("UPDATE tbl_lists SET list_name=:list_name, list_description=:list_description WHERE id=:listId");
 
             $query->bindValue(":listId", $this->listId);
@@ -73,7 +76,7 @@
         }
 
         public function savelist(){
-            $conn = Database::getConnection();
+            $conn = db::getConnection();
             $query = $conn->prepare("INSERT INTO tbl_lists (list_name, list_description) VALUES (:list_name, :list_description)");
             $query->bindValue(":list_name", $this->listname);
             $query->bindValue(":list_description", $this->listdescription);
@@ -96,7 +99,7 @@
 
             //returns all lists
                 public static function getAllLists($listId, $amount = 20){
-                $conn = Database::getConnection();
+                $conn = db::getConnection();
                 $query = $conn->prepare("SELECT * FROM tbl_lists ");
                 $query->bindValue(":listId", $listId);
                 $query->execute();
@@ -105,12 +108,12 @@
             }
 
             public function deleteList() {
-                $conn = Database::getConnection();
-                $query = $conn->prepare("DELETE FROM tbl_lists WHERE listDelete = :list_id");
-                $query->bindValue(":list_id","listDelete");
+                $conn = db::getConnection();
+                $query = $conn->prepare("DELETE FROM tbl_lists WHERE tbl_lists.list_id = :list_id");
+                $query->bindValue(":list_id","list_id");
                 $result = $query->execute();
                 return $result;
-
+                
             //DELETE FROM tbl_lists WHERE list_id = :listId"
             //DELETE FROM tbl_lists WHERE okee = list_id
     }

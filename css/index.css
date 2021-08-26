@@ -1,15 +1,17 @@
 html, body, h3 {
     font-family: 'Montserrat', sans-serif;
-    
 }
 
 table{
    
   font-size: 12px;
-    width: 100%;
+    width: 200px;
     top: 30px;
-    right: 10%;
+    right: 4%;
     text-align: left;
+    margin: auto;
+  width: 50%;
+  padding: 10px;
 
 }
 
@@ -28,6 +30,7 @@ table{
 h3{
     width: 100%;
     text-align: center;
+    
 }
 
 .notdone {
@@ -41,6 +44,9 @@ color: rgb(172, 51, 51);
   border: 1px solid #bd1c22;
   border-radius: 5px;
   padding: 1em;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
 }
 
 

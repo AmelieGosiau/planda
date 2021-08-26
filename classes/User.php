@@ -16,7 +16,7 @@
         const COST_PASSWORD = 11; 
 
         public static function canLogin($username, $password) {
-            $conn = Database::getConnection();
+            $conn = db::getConnection();
             $query = $conn->prepare("SELECT * FROM users WHERE username = :username");
             
             $query->bindValue(":username", $username);
@@ -46,7 +46,7 @@
         }
 
         public static function getUserIdByName($username){
-            $conn = Database::getConnection();
+            $conn = db::getConnection();
             $query = $conn->prepare("SELECT id FROM users WHERE username = :username");
 
             $query-> bindValue(":username", $username);
@@ -68,7 +68,7 @@
         }
 
         public static function getUsernameById($userId){
-            $conn = Database::getConnection(); 
+            $conn = db::getConnection(); 
             $query = $conn->prepare("SELECT username FROM users WHERE id = :userId");
             
             $query->bindValue(":userId", $userId);
@@ -96,7 +96,7 @@
         }
 
         public static function getPasswordById($userId){
-            $conn = Database::getConnection(); 
+            $conn = db::getConnection(); 
             $query = $conn->prepare("SELECT password FROM users WHERE id = :userId");
             
             $query->bindValue(":userId", $userId);
@@ -116,7 +116,7 @@
         }
 
         public static function getEmailById($userId){
-            $conn = Database::getConnection(); 
+            $conn = db::getConnection(); 
             $query = $conn->prepare("SELECT email FROM users WHERE id = :userId");
             
             $query->bindValue(":userId", $userId);
@@ -128,7 +128,7 @@
 
 
         public function save(){
-            $conn = Database::getConnection();
+            $conn = db::getConnection();
             $query = $conn->prepare("INSERT INTO users (username, password, email) VALUES (:username, :password, :email)");
             
             $query->bindValue(":username", $this->username);
@@ -198,7 +198,7 @@
         }
 
         private function emailExists($email){ 
-            $conn = Database::getConnection();
+            $conn = db::getConnection();
             $query = $conn->prepare("SELECT id FROM users WHERE email = :email");
 
             $query->bindValue(":email", $email);            
@@ -218,7 +218,7 @@
         }
 
         private function usernameExists($username){ 
-            $conn = Database::getConnection();
+            $conn = db::getConnection();
             $query = $conn->prepare("SELECT id FROM users WHERE username = :username");
 
             $query->bindValue(":username", $username);            
@@ -238,7 +238,7 @@
         }
 
         public function getDetails(){
-            $conn = Database::getConnection();
+            $conn = db::getConnection();
             $statement = $conn->prepare("SELECT * FROM `users` WHERE id = :id");
             $statement->bindValue(":id", $this->getUserId());
             $statement->execute();
