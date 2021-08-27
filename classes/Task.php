@@ -25,11 +25,19 @@
         return $this->taskname;
     }
 
+    public static function getTasknameById($taskId){
+        $conn = db::getConnection(); 
+        $query = $conn->prepare("SELECT list_name FROM tbl_lists WHERE list_id = :list_id");
+        $query->bindValue(":list_id", $taskId);
+        $query->execute();
+        $listname = $query->fetch();
+        return $listname;
+    }
+
    
     public function setTaskname($taskname)
     {
         $this->taskname = $taskname;
-
         return $this;
     }
 
@@ -78,7 +86,7 @@
     }
     private function taskExists($taskname){ 
         $conn = db::getConnection();
-        $query = $conn->prepare("SELECT id FROM tasks WHERE task_name = :task_name");
+        $query = $conn->prepare("SELECT id FROM tbl_tasks WHERE task_name = :task_name");
 
         $query->bindValue(":task_name", $taskname);            
         $query->execute();
@@ -92,12 +100,23 @@
     }
     public function savetask(){
         $conn = db::getConnection();
-        $query = $conn->prepare("INSERT INTO tbl_lists (list_name, list_description) VALUES (:list_name, :list_description)");
-        $query->bindValue(":list_name", $this->listname);
-        $query->bindValue(":list_description", $this->listdescription);
+        $query = $conn->prepare("INSERT INTO tbl_tasks (task_name, task_hours, task_deadline, priority) VALUES (:task_name, :task_hours, :task_deadline, :priority)");
+        $query->bindValue(":task_name", $this->taskname);
+        $query->bindValue(":task_hours", $this->taskhours);
+        $query->bindValue(":task_deadline", $this->taskdeadline);
+        $query->bindValue(":priority", $this->priority);
 
         $result=$query->execute();
         return $result;
+    }
+     //returns all tasks
+     public static function getAllTasks($taskId, $amount = 120){
+        $conn = db::getConnection();
+        $query = $conn->prepare("SELECT * FROM tbl_tasks ");
+        $query->bindValue(":taskId", $taskId);
+        $query->execute();
+        $posts = $query->fetchAll();
+        return $posts;
     }
 }
 

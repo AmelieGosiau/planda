@@ -98,7 +98,7 @@
             }
 
             //returns all lists
-                public static function getAllLists($listId, $amount = 20){
+                public static function getAllLists($listId, $amount = 120){
                 $conn = db::getConnection();
                 $query = $conn->prepare("SELECT * FROM tbl_lists ");
                 $query->bindValue(":listId", $listId);

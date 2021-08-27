@@ -1,9 +1,7 @@
 <?php include_once('core/autoload.php');?>
 <?php include_once('loggedin.inc.php');?>
 <?php
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+
 
 $listId = Listitem::getlistnameById($_SESSION['listId']);
 
@@ -48,7 +46,7 @@ $listId = Listitem::getlistnameById($_SESSION['listId']);
 <body>
 <?php include_once("navigation.php")?>
 
-<form method="post" action="manage-lists.php">
+<form method="post" action="">
 <?php if(isset($error)):?>
         <div class="alert">
         <?php echo $error;?></div>
