@@ -38,7 +38,6 @@
 
         public function setUserId($userId){
             $this->userId = $userId;
-            return $this;
         }
 
         public function getUserId(){
@@ -230,22 +229,6 @@
             } else {
                 return True;
             }
-        }
-
-        public function loggedInUser(){
-            $id = $_SESSION["user"];
-            return $id;
-        }
-
-        public function getDetails(){
-            $conn = db::getConnection();
-            $statement = $conn->prepare("SELECT * FROM `users` WHERE id = :id");
-            $statement->bindValue(":id", $this->getUserId());
-            $statement->execute();
-            $result = $statement->fetch(PDO::FETCH_OBJ);
-            
-            return $result;
-    
         }
        
     }

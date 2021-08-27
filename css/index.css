@@ -1,6 +1,17 @@
 html, body, h3 {
     font-family: 'Montserrat', sans-serif;
 }
+.alert
+{
+  color: #bd1c22;
+  background-color: #fff;
+  border: 1px solid #bd1c22;
+  border-radius: 5px;
+  padding: 1em;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
 
 table{
    
@@ -37,17 +48,7 @@ h3{
 color: rgb(172, 51, 51);
 }
 
-.alert
-{
-  color: #bd1c22;
-  background-color: #fff;
-  border: 1px solid #bd1c22;
-  border-radius: 5px;
-  padding: 1em;
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-}
+
 
 
 

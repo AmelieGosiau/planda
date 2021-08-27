@@ -19,8 +19,7 @@ $list = new Listitem();
         } catch (\Throwable $e) {
             $error = $e->getMessage();
         }
-        
-}
+    }
 
     //show the lists
     $listLists = Listitem::getAllLists($listId);
